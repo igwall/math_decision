@@ -44,6 +44,67 @@ def supprimerSommet(eleve, marks): #Retourne la matrice avec le sommet rempli de
     return marks
 
 
+
+#Method which permits to return the sub-matrix of marks of the group given in parameters
+def marksGroup(listGroup, marks):
+    groupMarks = [[""] * len(listGroup) for _ in range(len(listGroup))]
+    for i in range(0, len(listGroup) ):
+        for j in range(0, len(listGroup) ):
+            groupMarks[i][j] = marks[ listGroup[i] ][ listGroup[j] ]
+    return groupMarks
+
+
+#Methods which permits to return medians 2 by 2 of a group of students
+def groupMedians(groupMarks):
+    medians = []
+    levels = ['AR','I','P','AB','B','TB']
+    for i in range(len(groupMarks)):
+        for j in range(len(groupMarks[i])):
+            if i != j: #condition to eliminate the "-1" value
+
+                #as we have 2 values (mark of the student A on B and reciprocally) , the median is the largest
+                #we use the table level to do the correspondence
+                if levels.index(groupMarks[i][j]) > levels.index(groupMarks[j][i]):
+                    median = groupMarks[i][j]
+                else:
+                    median = groupMarks[j][i]
+
+                medians.append(median)
+    return medians
+
+
+#Method which permits to return the median of the group given in parameters
+def median(listGroup, marks):
+    groupMarks = [[""] * len(listGroup) for _ in range(len(listGroup))]
+    medians = []
+    levels = ['AR','I','P','AB','B','TB']
+
+    groupMarks = marksGroup(listGroup, marks)
+
+    medians = groupMedians(groupMarks) #get medians of each relation in the group 2 by 2
+
+    #the matrix of medians is transformed using the matrix of levels in order to be able to sort and calculate the mathematical median
+    for i in range(len(medians)):
+        medians[i] = levels.index(medians[i])
+    medians.sort()
+
+    #we get the median (we round up if we have an even number) which corresponds to the value in the middle of our table "medians" (since it is sorted) and we retransform this value into the corresponding level
+    return levels [ medians[ round(len(medians) / 2) ] ]
+
+
+#Method which returns which group of the 2 is the best (by using the median)
+def bestGroup(listGroup1, listGroup2, marks):
+    levels = ['AR','I','P','AB','B','TB']
+
+    medianValue1 = levels.index( median(listGroup1, marks) )
+    medianValue2 = levels.index( median(listGroup2, marks) )
+    if (medianValue1 > medianValue2):
+        return listGroup1
+    else:
+        return listGroup2
+
+
+
 # === === === === === MAIN
 
 # === === clean data from preferences
@@ -65,3 +126,9 @@ index_level = 0
 
 print(marks)
 print("La première note est: " + str(marks[0][0]))  # First line, second column
+
+print(median([5, 4 ,6], marks))
+
+print(bestGroup([4,5,6], [2,6,8], marks))
+print(bestGroup([0,1,2], [0,39,9], marks))
+print(bestGroup([0,9,39], [1,4,5], marks))
