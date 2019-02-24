@@ -28,12 +28,12 @@ def traitement(index_level, marks):
     # Si nb arete =1
         # On fait un groupe de 2
 
-def formerGroupe(groupe, marks): # Supprime les sommets qui sont instanciés à partir d'une liste de numéro d'étudiant
+def formerGroupe(groupe, marks): # Delete all nodes from the list of students putted in entry
     for eleve in groupe:  # Pour chaque élève du groupe que l'on souhaite former
-        marks = supprimerSommet(eleve,marks)
+        marks = deleteNode(eleve,marks)
     return marks
 
-def supprimerSommet(eleve, marks): #Retourne la matrice avec le sommet rempli de -1
+def deleteNode(eleve, marks): #Retourne la matrice avec le sommet rempli de -1
     for i in range(len(marks[eleve])):
         if marks[eleve][i] != '-1':
             marks[eleve][i] = '-1'
