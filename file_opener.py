@@ -15,4 +15,3 @@ def extractStudentsNumbers(data_raw):
     students_numbers = []
     students_numbers = csv.reader(data_raw, delimiter=',')
     return next(students_numbers)
-
