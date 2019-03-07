@@ -59,7 +59,7 @@ def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks)
             marksUpgraded = upgrade(levels[index_level],marks)
             return groupRepartition(marksUpgraded,levels,index_level+1,eleveDejaGroupe,originalMarks)
         else:
-            if(existsDegInOutInfOrEqual(0,marks)):
+            if(existeSommetIsole(marks, eleveDejaGroupe)): # Sommet isolé et quid des gens déjà groupés
 
                 return []    #Quel message pour dire qu'on a une erreur ?
 

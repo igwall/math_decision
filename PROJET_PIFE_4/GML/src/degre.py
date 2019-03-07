@@ -52,6 +52,18 @@ def existsDegInOutInfOrEqual(degree, marks):
     return existStudentWithDegInfOrEqDegree
 
 
+
+# Retourne vrai si un sommet est isolé et pas encore placé
+def existeSommetIsole(marks, eleveGroupes):
+    isole = False
+    for i in range(len(marks)):
+        if incomingDegree(i,marks) == 0 and outgoingDegree(i,marks) == 0 not in eleveGroupes:
+            isole = True
+    return isole
+
+
+
+
 """
 Paramètres :
     - marks : matrice de String
@@ -75,3 +87,10 @@ def getSommetsDegInOutInfEq(degree, marks):
         if (incomingDegree(i,marks) <= degree) or (outgoingDegree(i,marks) <= degree):
             studentLists.append(i)
     return studentLists
+
+
+
+M = [ ['-1','-1','-1'],['-1','-1','-1']]
+eleveGroupe = [1]
+result = existeSommetIsole(M,eleveGroupe)
+print(result)
