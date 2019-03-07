@@ -81,11 +81,12 @@ def existsDegInOutInfOrEqual(degree, marks):
     return found
 
 
-def getSommetsDegInOutInfEq(degree, marks):
+def getSommetsDegInOutInfEq(degree, marks, eleveDejaGroupe):
     studentLists = []
     for i in range(len(marks)):
         if (incomingDegree(i,marks) <= degree) or (outgoingDegree(i,marks) <= degree):
-            studentLists.append(i)
+            if i not in eleveDejaGroupe:
+                studentLists.append(i)
     return studentLists
 
 

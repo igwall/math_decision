@@ -58,26 +58,27 @@ def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks)
         #Si y’a personne <= à 2 : récursivité degIn et degOut
         if(not(existsDegInOutInfOrEqual(2,marks))):
             marksUpgraded = upgrade(levels[index_level],marks)
-            return groupRepartition(marksUpgraded,levels,index_level+1,eleveDejaGroupe,originalMarks)
+            return groupRepartition(marksUpgraded, levels, index_level+1, eleveDejaGroupe, originalMarks)
         else:
             if(existeSommetIsole(marks, eleveDejaGroupe)): # Sommet isolé et quid des gens déjà groupés
 
                 return []    #Quel message pour dire qu'on a une erreur ?
 
             # Si y’en a (sommet A) dont le degré entrant ou sortant <= 2 :
-            listeSommetsInfEqTwo = getSommetsDegInOutInfEq(2, marks) #[A,B,C,D]
+            listeSommetsInfEqTwo = getSommetsDegInOutInfEq(2, marks, eleveDejaGroupe) #[A,B,C,D]
             listeLinkedNodes = linkedNodes(listeSommetsInfEqTwo[0], marks)
             listPossibleCombinations = possibleCombinations(listeSommetsInfEqTwo[0], listeLinkedNodes)
 
             tempMark = copy.deepcopy(marks)
             repartitions = []
+            repartitionFragment = []
             for group in listPossibleCombinations:
                 newMarks = createGroup(group, tempMark)
                 # On ajoute tous les éléments du nouveau groupe (liste) aux élèves déjà placés (liste)
                 eleveDejaGroupe = eleveDejaGroupe + group
-
-                # On reste au même niveau car il existe peut-etre d'autres sommets qui rentrent dans cette condition
-                repartitions.append(groupRepartition(newMarks, levels, index_level, eleveDejaGroupe, originalMarks))
+                repartitionFragment.append(group)
+                # On reste au même niveau car il existe  peut-etre d'autres sommets qui rentrent dans cette condition
+                repartitions.append(repargroupRepartition(newMarks, levels, index_level, eleveDejaGroupe, originalMarks))
 
             bestRep = bestRepartition(repartitions, originalMarks)  # forme de répartitions : [ [[AB],[CD]],  [[AC], [B,D]]  ]
             return bestRep
