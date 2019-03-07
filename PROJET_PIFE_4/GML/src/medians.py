@@ -70,9 +70,13 @@ def bestRepartition(listeRepartitions, marks):
     for i in mediansRepartitions:
         maxRepartition.append(levels.index(i))
 
-    maxLevel = max(maxRepartition)
-    bestLevel = levels[maxLevel]
-    indexBestMedian = mediansRepartitions.index(bestLevel)
+    if(len(maxRepartition) == 0):
+        return
 
-    return listeRepartitions[indexBestMedian]
+    else:
+        maxLevel = max(maxRepartition)
+        bestLevel = levels[maxLevel]
+        indexBestMedian = mediansRepartitions.index(bestLevel)
+
+        return listeRepartitions[indexBestMedian]
 
