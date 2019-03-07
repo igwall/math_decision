@@ -3,6 +3,7 @@ from src.medians import *
 from src.file_opener import *
 from src.combinaisons import *
 from src.degre import *
+from src.nodes import *
 import copy
 
 
@@ -63,10 +64,10 @@ def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks)
 
                 return []    #Quel message pour dire qu'on a une erreur ?
 
-            listIngoingNodesNodes = []
             # Si y’en a (sommet A) dont le degré entrant ou sortant <= 2 :
             listeSommetsInfEqTwo = getSommetsDegInOutInfEq(2, marks) #[A,B,C,D]
-            listPossibleCombinations = possibleCombinations(listeSommetsInfEqTwo[0], listIngoingNodesNodes)
+            listeLinkedNodes = linkedNodes(listeSommetsInfEqTwo[0], marks)
+            listPossibleCombinations = possibleCombinations(listeSommetsInfEqTwo[0], listeLinkedNodes)
 
             tempMark = copy.deepcopy(marks)
             repartitions = []
