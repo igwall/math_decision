@@ -70,18 +70,21 @@ def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks)
             listPossibleCombinations = possibleCombinations(listeSommetsInfEqTwo[0], listeLinkedNodes)
 
             tempMark = copy.deepcopy(marks)
-            repartitions = []
+            #repartitions = []
             repartitionFragment = []
-            for group in listPossibleCombinations:
-                newMarks = createGroup(group, tempMark)
-                # On ajoute tous les éléments du nouveau groupe (liste) aux élèves déjà placés (liste)
-                eleveDejaGroupe = eleveDejaGroupe + group
-                repartitionFragment.append(group)
-                # On reste au même niveau car il existe  peut-etre d'autres sommets qui rentrent dans cette condition
-                repartitions.append(groupRepartition(newMarks, levels, index_level, eleveDejaGroupe, originalMarks))
 
-            bestRep = bestRepartition(repartitions, originalMarks)  # forme de répartitions : [ [[AB],[CD]],  [[AC], [B,D]]  ]
-            return bestRep
+            trees = []
+
+            for group in listPossibleCombinations:
+                tempMark = copy.deepcopy(marks)
+                newMarks = createGroup(group, tempMark)
+                groupToAdd = groupRepartition(newMarks, levels, index_level, eleveDejaGroupe+group, originalMarks)
+                tree = group + groupToAdd
+                trees.append(tree)
+
+            groupe = bestRepartition(trees, originalMarks)
+            return groupe
+
 
 
 ext = sys.argv[1][1:]
