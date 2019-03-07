@@ -78,7 +78,7 @@ def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks)
                 eleveDejaGroupe = eleveDejaGroupe + group
                 repartitionFragment.append(group)
                 # On reste au même niveau car il existe  peut-etre d'autres sommets qui rentrent dans cette condition
-                repartitions.append(repargroupRepartition(newMarks, levels, index_level, eleveDejaGroupe, originalMarks))
+                repartitions.append(groupRepartition(newMarks, levels, index_level, eleveDejaGroupe, originalMarks))
 
             bestRep = bestRepartition(repartitions, originalMarks)  # forme de répartitions : [ [[AB],[CD]],  [[AC], [B,D]]  ]
             return bestRep
