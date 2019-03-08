@@ -44,46 +44,51 @@ Paramètres :
     - index_level : entier
     - eleveDejaGroupe : liste d'entier
     - originalMarks : matrice de String
+    - repartitionEnCours : liste de int
 Résultat : retourne une liste de listes d'entiers
 Méthode récursive qui permet de constituer la répartition
 """
-def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks):
-    # On a fini, on a plus délèves disponibles
+repartitionsPossibles = [] #variableGlobale
+def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks, repartitionEnCours):
+    if len(repartitionsPossibles) >= 1000 :
+        bestRep = bestRepartition(repartitionsPossibles, originalMarks)
+        print(bestRep)
+        print(medianRepartition(bestRep, originalMarks))
+        sys.exit()
+    # On a fini, on a plus délèves disponible
     if not(studentAvailable(marks, eleveDejaGroupe)):
+        print("finish")
+        repartitionsPossibles.append( repartitionEnCours )
         return #On fait un return vide pour indiquer qu'on a terminé.
-
     else:
-
-
         #Si y’a personne <= à 2 : récursivité degIn et degOut
         if(not(existsDegInOutInfOrEqual(2,marks))):
             marksUpgraded = upgrade(levels[index_level],marks)
-            return groupRepartition(marksUpgraded, levels, index_level+1, eleveDejaGroupe, originalMarks)
+            return groupRepartition(marksUpgraded, levels, index_level+1, eleveDejaGroupe, originalMarks, repartitionEnCours)
         else:
             if(existeSommetIsole(marks, eleveDejaGroupe)): # Sommet isolé et quid des gens déjà groupés
-
                 return []    #Quel message pour dire qu'on a une erreur ?
 
             # Si y’en a (sommet A) dont le degré entrant ou sortant <= 2 :
             listeSommetsInfEqTwo = getSommetsDegInOutInfEq(2, marks, eleveDejaGroupe) #[A,B,C,D]
-            listeLinkedNodes = linkedNodes(listeSommetsInfEqTwo[0], marks)
-            listPossibleCombinations = possibleCombinations(listeSommetsInfEqTwo[0], listeLinkedNodes)
-
-            tempMark = copy.deepcopy(marks)
-            #repartitions = []
-            repartitionFragment = []
-
-            trees = []
-
-            for group in listPossibleCombinations:
+            if( len(listeSommetsInfEqTwo) != 0 ):
+                listeLinkedNodes = linkedNodes(listeSommetsInfEqTwo[0], marks)
+                listPossibleCombinations = possibleCombinations(listeSommetsInfEqTwo[0], listeLinkedNodes)
                 tempMark = copy.deepcopy(marks)
-                newMarks = createGroup(group, tempMark)
-                groupToAdd = groupRepartition(newMarks, levels, index_level, eleveDejaGroupe+group, originalMarks)
-                tree = group + groupToAdd
-                trees.append(tree)
 
-            groupe = bestRepartition(trees, originalMarks)
-            return groupe
+                for group in listPossibleCombinations:
+                    print("group", group)
+                    tempMark = copy.deepcopy(marks)
+                    newMarks = createGroup(group, tempMark)
+
+                    #sinon on utilise la liste du tour d'avant
+                    tempEleveDejaGroupe = copy.deepcopy(eleveDejaGroupe)
+                    tempEleveDejaGroupe = eleveDejaGroupe + group
+
+                    tempRepEnCours = copy.deepcopy(repartitionEnCours)
+                    tempRepEnCours.append( group )
+
+                    groupToAdd = groupRepartition(newMarks, levels, index_level, tempEleveDejaGroupe, originalMarks, tempRepEnCours)
 
 
 
@@ -103,8 +108,8 @@ originalMarks = initialize(originalMarks)
 levels = ['AR','I','P','AB','B','TB']
 index_level = 0
 
-groupsTest = groupRepartition(marks, levels, index_level, [], originalMarks)
+groupsTest = groupRepartition(marks, levels, index_level, [], originalMarks, [])
 print("La répartition est : ")
-print(groupsTest)
-
+#print(groupsTest)
+print(repartitionsPossibles)
 #generateCSV(groupsTest,students)

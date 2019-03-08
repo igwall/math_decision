@@ -84,14 +84,7 @@ def existsDegInOutInfOrEqual(degree, marks):
 def getSommetsDegInOutInfEq(degree, marks, eleveDejaGroupe):
     studentLists = []
     for i in range(len(marks)):
-        if (incomingDegree(i,marks) <= degree) or (outgoingDegree(i,marks) <= degree):
+        if ((incomingDegree(i,marks) <= degree) or (outgoingDegree(i,marks) <= degree)):
             if i not in eleveDejaGroupe:
                 studentLists.append(i)
     return studentLists
-
-
-
-M = [ ['-1','-1','-1'],['-1','-1','-1']]
-eleveGroupe = [1]
-result = existeSommetIsole(M,eleveGroupe)
-print(result)

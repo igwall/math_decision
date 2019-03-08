@@ -93,6 +93,7 @@ Result :
 if group is empty, it returns AR
 """
 def noteGroupe(group, marks):
+    group = list(set(group))
     if len(group)!=0 and group is not None:
         levels = ['AR','I','P','AB','B','TB']
         groupMarks = []
@@ -104,7 +105,7 @@ def noteGroupe(group, marks):
         for i in range(0, len(groupMarks) ):
             for j in range(0, len(groupMarks) ):
                 if i != j :
-                        notes.append(levels.index(groupMarks[i][j]))
+                    notes.append(levels.index(groupMarks[i][j]))
 
         minNote = min(notes)
         return levels[minNote]
