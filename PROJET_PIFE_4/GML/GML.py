@@ -82,7 +82,7 @@ levels = ['AR','I','P','AB','B','TB']
 index_level = 0
 groupsTest = []
 if uniqueLevel(marks):
-    groupsTest = specialGroupRepartition(marks, levels, index_level, [], originalMarks, [])
+    groupsTest = specialGroupRepartition(marks)
 else:
     groupsTest = groupRepartition(marks, levels, index_level, [], originalMarks, [])
 
