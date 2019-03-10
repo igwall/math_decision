@@ -4,6 +4,7 @@ from src.file_opener import *
 from src.combinaisons import *
 from src.degre import *
 from src.nodes import *
+from src.csvGenerator import *
 import copy
 
 
@@ -50,19 +51,21 @@ Méthode récursive qui permet de constituer la répartition
 """
 repartitionsPossibles = [] #variableGlobale
 def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks, repartitionEnCours):
-    if len(repartitionsPossibles) >= 1000 :
+    if len(repartitionsPossibles) >= 100 :
         bestRep = bestRepartition(repartitionsPossibles, originalMarks)
         print(bestRep)
         print(medianRepartition(bestRep, originalMarks))
         sys.exit()
-    # On a fini, on a plus délèves disponible
-    if not(studentAvailable(marks, eleveDejaGroupe)):
+
+    # On a fini, on a plus délèves disponible et tous le monde a été placé
+    if not(studentAvailable(marks, eleveDejaGroupe)) and len(eleveDejaGroupe) == len(marks):
         print("finish")
         repartitionsPossibles.append( repartitionEnCours )
         return #On fait un return vide pour indiquer qu'on a terminé.
+
     else:
-        #Si y’a personne <= à 2 : récursivité degIn et degOut
-        if(not(existsDegInOutInfOrEqual(2,marks))):
+        #Si y’a personne <= à 2 : récursivité degIn et degOut mais qu'on est pas au niveau de TB
+        if(not(existsDegInOutInfOrEqual(2,marks)) and not(uniqueLevel(marks))):
             marksUpgraded = upgrade(levels[index_level],marks)
             return groupRepartition(marksUpgraded, levels, index_level+1, eleveDejaGroupe, originalMarks, repartitionEnCours)
         else:
@@ -112,4 +115,4 @@ groupsTest = groupRepartition(marks, levels, index_level, [], originalMarks, [])
 print("La répartition est : ")
 #print(groupsTest)
 print(repartitionsPossibles)
-#generateCSV(groupsTest,students)
+createCSVFile(groupsTest,students)

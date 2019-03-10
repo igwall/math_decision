@@ -88,3 +88,18 @@ def getSommetsDegInOutInfEq(degree, marks, eleveDejaGroupe):
             if i not in eleveDejaGroupe:
                 studentLists.append(i)
     return studentLists
+
+#Methode qui retourne true si il ne reste plus qu'un seul niveau dans la matrice
+def uniqueLevel(marks):
+    listeNotes = [];
+    nbNotesDifferentes = 0
+    for student in marks:
+        for elem in student:
+            # Si la note est différente de -1
+            if elem != '-1':
+                # Si le niveau de note n'est pas dans la liste des notes déjà parcourues
+                if elem not in listeNotes:
+                    listeNotes.append(elem)
+                    nbNotesDifferentes += 1
+    print(nbNotesDifferentes == 1)
+    return nbNotesDifferentes == 1
