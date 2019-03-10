@@ -2,7 +2,7 @@ from random import *
 import math
 import csv
 
-note = ["TB","AR"]
+note = ["TB"]
 nbEtu = 10
 students = [ [ "" for y in range( nbEtu + 1) ] for x in range( nbEtu + 1) ]
 names = ["", 1,2,3,4,5,6,7,8,9,10] 
@@ -17,7 +17,7 @@ for i in range(1,nbEtu+1) :
         else :
             students[i][j] = note[math.floor(random()*len(note))]
 
-with open('preferencesL10TBAR.csv', mode='w') as preferences_file:
+with open('preferencesL10TB.csv', mode='w') as preferences_file:
     employee_writer = csv.writer(preferences_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     employee_writer.writerow(names)
     for i in range(1,nbEtu+1) :
