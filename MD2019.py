@@ -19,7 +19,7 @@ import subprocess
 report_number = 4
 
 # The maximum time a group can take to run their script, in seconds
-max_compute_time = 99
+max_compute_time = 120
 
 # ==================================================================== #
 

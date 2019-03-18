@@ -11,8 +11,9 @@ Prends une matrice avec une seule note
 
 repartitionsPossibles = [] #variableGlobale
 def specialGroupRepartition(marks):
+    print("on the special repartition")
     students = []
-    nbRepartitions = 100
+    nbRepartitions = 10
     currentRepartition = []
     i = 0
     while i < nbRepartitions:
@@ -34,10 +35,16 @@ def specialGroupRepartition(marks):
                     students.append(etudiant)
             currentRepartition.append(currentGroup)
 
-            if len(currentRepartition) == 18:
+            if len(marks) >= 36:
+                if len(currentRepartition) == 18:
+                    repartitionsPossibles.append(currentRepartition)
+                    print(currentRepartition)
+                    i += 1
+            else :
                 repartitionsPossibles.append(currentRepartition)
                 print(currentRepartition)
                 i += 1
+
 
         students = []
         currentRepartition = []
