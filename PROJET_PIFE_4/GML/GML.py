@@ -21,7 +21,7 @@ Méthode récursive qui permet de constituer la répartition
 """
 repartitionsPossibles = [] #variableGlobale
 def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks, repartitionEnCours):
-    if len(repartitionsPossibles) >= 100 :
+    if len(repartitionsPossibles) >= 10000 :
         bestRep = bestRepartition(repartitionsPossibles, originalMarks)
         print(bestRep)
         print(medianRepartition(bestRep, originalMarks))
@@ -89,4 +89,5 @@ else:
 print("La répartition est : ")
 #print(groupsTest)
 print(repartitionsPossibles)
+print(len(repartitionsPossibles))
 createCSVFile(groupsTest,students)

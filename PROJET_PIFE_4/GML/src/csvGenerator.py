@@ -19,14 +19,15 @@ def createCSVFile(repartitions,students):
        Write the CSV file
        :param repartitions: list of repartitions to write
        """
-    print("\n",repartitions)
+    #print("\n",repartitions)
     with open('GML.csv', 'w', newline="") as csvfile:
         filewriter = csv.writer(csvfile, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        for rep in repartitions:
-            repartition = []
-            for group in rep:
-                groupP = ""
-                for student in group:
-                    groupP = groupP + ' ' + str(students[student])
-                repartition.append(groupP)
-            filewriter.writerow(repartition)
+        if repartitions != None:
+            for rep in repartitions:
+                repartition = []
+                for group in rep:
+                    groupP = ""
+                    for student in group:
+                        groupP = groupP + ' ' + str(students[student])
+                        repartition.append(groupP)
+                filewriter.writerow(repartition)
