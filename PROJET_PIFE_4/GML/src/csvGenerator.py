@@ -30,8 +30,8 @@ def createCSVFile(repartitions,students):
                     for student in group:
                         print(students[student])
                         groupP = groupP + ' ' + str(students[student])
-
-                        repartition.append(groupP)
+                    repartition.append(groupP)
+                    print(groupP)
                 print(repartition)
                 filewriter.writerow(repartition)
         else:
