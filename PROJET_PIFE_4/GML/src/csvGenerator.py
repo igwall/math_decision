@@ -28,6 +28,11 @@ def createCSVFile(repartitions,students):
                 for group in rep:
                     groupP = ""
                     for student in group:
+                        print(students[student])
                         groupP = groupP + ' ' + str(students[student])
+
                         repartition.append(groupP)
+                print(repartition)
                 filewriter.writerow(repartition)
+        else:
+            print("error")
