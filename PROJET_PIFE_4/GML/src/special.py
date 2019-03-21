@@ -38,15 +38,13 @@ def specialGroupRepartition(marks):
             if len(marks) >= 36:
                 if len(currentRepartition) == 18:
                     repartitionsPossibles.append(currentRepartition)
-                    print(currentRepartition)
                     i += 1
             else :
                 repartitionsPossibles.append(currentRepartition)
-                print(currentRepartition)
                 i += 1
 
 
         students = []
         currentRepartition = []
-
+    print(repartitionsPossibles)
     return repartitionsPossibles

@@ -83,6 +83,7 @@ index_level = 0
 groupsTest = []
 if uniqueLevel(marks):
     groupsTest = specialGroupRepartition(marks)
+    repartitionsPossibles = groupsTest
 else:
     groupsTest = groupRepartition(marks, levels, index_level, [], originalMarks, [])
 
