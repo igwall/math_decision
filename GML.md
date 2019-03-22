@@ -124,9 +124,9 @@ Donnons les informations suivantes avec les notations suivantes:
 |e1    | -1  | TB  |   B  |  AB  |  B  |  AB |   TB |   B  |  AR  |
 |e2    |  I  | -1  |  AR  |  AR  |  TB |  I  |   P  |  TB  |  AB  |
 |e3    |  AB |  B  |  -1  |  TB  |  AB |  B  |   B  |  AB  |  TB  |
-|e4    |  P  |  P  |  AB  |  -1  |  B  |  I  |   AB |  TB  |   P  |  
+|e4    |  P  |  P  |  AB  |  -1  |  B  |  I  |   AB |  TB  |   P  |
 |e5    |  I  |  B  |   B  |  TB  |  -1 |  AR |  TB  |   I  |   B  |
-|e6    |  P  |  AR |  AB  |  B   |  B  |  -1 |   B  |  AB  |  TB  |  
+|e6    |  P  |  AR |  AB  |  B   |  B  |  -1 |   B  |  AB  |  TB  |
 |e7    |  I  |  B  |  I   |  TB  | AB  | TB  |  -1  |  AR  |  I   |
 |e8    |  P  |  P  |  AB  |  AR  |  P  |  B  |  I   | -1   |  TB  |
 |e9    |  TB |  B  |  AB  |  B   |  I  | TB  |  AB  |  I   | -1   |
@@ -139,9 +139,9 @@ Table: initialisation
 |e1    | -1  | TB  |   B  |  AB  |  B  |  AB |   TB |   B  |  AR  |
 |e2    |     | -1  |  AR  |  AR  |  TB |     |   P  |  TB  |  AB  |
 |e3    |  AB |  B  |  -1  |  TB  |  AB |  B  |   B  |  AB  |  TB  |
-|e4    |  P  |  P  |  AB  |  -1  |  B  |     |   AB |  TB  |   P  |  
+|e4    |  P  |  P  |  AB  |  -1  |  B  |     |   AB |  TB  |   P  |
 |e5    |     |  B  |   B  |  TB  |  -1 |  AR |  TB  |      |   B  |
-|e6    |  P  |  AR |  AB  |  B   |  B  |  -1 |   B  |  AB  |  TB  |  
+|e6    |  P  |  AR |  AB  |  B   |  B  |  -1 |   B  |  AB  |  TB  |
 |e7    |     |  B  |      |  TB  | AB  | TB  |  -1  |  AR  |      |
 |e8    |  P  |  P  |  AB  |  AR  |  P  |  B  |      | -1   |  TB  |
 |e9    |  TB |  B  |  AB  |   B  |     | TB  |  AB  |      | -1   |
@@ -156,9 +156,9 @@ A cette étape, nous avons retiré tous les liens notés "insuffisants". Rien d'
 |e1    | -1  | TB  |   B  |  AB  |  B  |  AB |   TB |   B  |  AR  |
 |e2    |     | -1  |  AR  |  AR  |  TB |     |      |  TB  |  AB  |
 |e3    |  AB |  B  |  -1  |  TB  |  AB |  B  |   B  |  AB  |  TB  |
-|e4    |     |     |  AB  |  -1  |  B  |     |   AB |  TB  |      |  
+|e4    |     |     |  AB  |  -1  |  B  |     |   AB |  TB  |      |
 |e5    |     |  B  |   B  |  TB  |  -1 |  AR |  TB  |      |   B  |
-|e6    |     |  AR |  AB  |   B  |  B  |  -1 |   B  |  AB  |  TB  |  
+|e6    |     |  AR |  AB  |   B  |  B  |  -1 |   B  |  AB  |  TB  |
 |e7    |     |  B  |      |  TB  | AB  | TB  |  -1  |  AR  |      |
 |e8    |     |     |  AB  |  AR  |     |  B  |      | -1   |  TB  |
 |e9    |  TB |  B  |  AB  |   B  |     | TB  |  AB  |      | -1   |
@@ -174,7 +174,7 @@ Il faut maintenant enlever tous les arcs qui partent de ces personnes, car elles
 |e2    | -1  |  AR  |  TB |     |      |  TB  |
 |e4    |     |  -1  |  B  |     |   AB |  TB  |
 |e5    |  B  |  TB  |  -1 |  AR |  TB  |      |
-|e6    |  AR |   B  |  B  |  -1 |   B  |  AB  |  
+|e6    |  AR |   B  |  B  |  -1 |   B  |  AB  |
 |e7    |  B  |  TB  | AB  | TB  |  -1  |  AR  |
 |e8    |     |  AR  |     |  B  |      | -1   |
 Table: tableau sans les arcs sortants
@@ -186,7 +186,7 @@ Une fois les élèves retirés, les élèves restant ont encore un degré entran
 |e2    | -1  |      |  TB |     |      |  TB  |
 |e4    |     |  -1  |  B  |     |   AB |  TB  |
 |e5    |  B  |  TB  |  -1 |     |  TB  |      |
-|e6    |     |   B  |  B  |  -1 |   B  |  AB  |  
+|e6    |     |   B  |  B  |  -1 |   B  |  AB  |
 |e7    |  B  |  TB  | AB  | TB  |  -1  |      |
 |e8    |     |      |     |  B  |      | -1   |
 Table: tableau sans les valeurs a rejeter
@@ -196,7 +196,7 @@ Deux élèves ont un degré entrant <=2 : e2 et e6. On remarque aussi que ces de
 Comme e2 est dans la plus "mauvaise" des situations, c'est lui qui aura la priorité pour s'associer avec lui. Le groupe e2, e5, e7 est donc formé.
 Le groupe restant est alors formé avec les trois élèves restant.
 
-Nous obtenons donc a la fin de notre algorithme les groupes suivants :  
+Nous obtenons donc a la fin de notre algorithme les groupes suivants :
 - e1, e3, e9
 - e2, e5, e7
 - e4, e6, e8
@@ -207,10 +207,6 @@ Nous obtenons donc a la fin de notre algorithme les groupes suivants :
 
 Lors de notre premier rendu, une erreur de récupération du fichier source était présente. Désormais corrigée, cette version devrait (sauf erreur de chemin) pouvoir proposer quelques répartitions en fonction des matrices données. Néanmoins, nous savons que notre méthode n'est pas infaillible et connait quelques erreurs en fonction des répartitions proposées en entrée.
 
-
-
-
-
 ## 4 Algorithme
 
 
@@ -218,7 +214,7 @@ Lors de notre premier rendu, une erreur de récupération du fichier source éta
 
  Tant qu'il reste des sommets dans V:
     Pour tout sommet u appartenant E tq u == i  (avec i la valeur que l'on etudie)
-E=E\v
+E=E privé de v
 Si il existe un sommet e tel que degIn(e) <= 2 alors:
         On associe e avec deux autres sommets dont les valeurs sont maximales
       on incrémente la valeur des relations
@@ -233,7 +229,6 @@ Si il existe des éleves avec un degré entrant égal à 0:
 Si il existe des éleves avec un degré entrant égal à 1:
 On créé le groupe avec cette personne.
 
-
 ## 5. Dernières modifications:
 
 Cette partie du rendu est consacrée aux dernières modifications apportées au programme.
@@ -245,6 +240,8 @@ Parmi les cas critiques rencontrés, nous avons notés:
 
 Néanmoins, nous avons essayé d'apporter quelques solutions à ces problemes. Dans le cas d'une matrice remplie avec une seule et unique note, nous avons essayé de créer une méthode "random" qui ressort un ensemble de répartitions composées de 18 groupes (le nombre de groupe idéal pour les projets) => méthode dans le fichier `special.py`. Cette solution nous semblait intéressante car, sachant que tout le monde souhaite travailler avec tout le monde dans cette configuration là, celà est aussi pertinant que de sortir des répartitions aléatoires. Seule une distribution par projet (dans ce cas précis) permettrait d'établir un nouvel ordre de préférence mais ce n'est pas le cas.
 
+L'équipe en charge du script de modification s'est décidée à mettre en place ce dernier la veille du rendu à 23h. Face à cette absence de décision, nous n'avons pas eu le temps de d'adapter l'ensemble des fonctions de notre méthode. C'est pourquoi il est possible que le script actuel ne fonctionne toujours pas. 
+
 ### 5.1 Gestion des égalités :
 
 En cas d'égalité dans une matrice TB/TB nous avons décidé de retirer un nombre x de distributions. x étant un paramètre inscrit dans le code qui peut être changé dans la fonction `specialGroupRepartition()`. Pour cela, les premières répartitions crées sont celles qui sont renvoyées car nous n'avons pas d'autres critères discriminants permettant de favoriser une distribution par rapport à une autre.
@@ -254,7 +251,7 @@ Pour ce qui est des autres types de matrices, nous avons renvoyé l'ensemble des
 
 ### 6.1 problemes :
 Plusieurs problemes ont été rencontré durant le projet.
-Le plus gros problème auquel on a du faire face durant ce projet fut la gestion du temps. En effet, ce dernier était limité et partagé entre plusieurs projets.
+Le plus gros problème auquel on a du faire face durant ce projet fut la gestion du temps. En effet, ce dernier était limité et partagé entre plusieurs projets.
 Egalement, l'implémentation de notre solution a demandé un investissement constant. Malgré cela, nous n'avons pas réussi à terminer notre algorithme.
 De plus, nos nombreux problemes de chemin d'execution ne nous ont pas permis d'avoir un retour sur les problemes liés à notre implémentation.
 

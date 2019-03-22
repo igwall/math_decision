@@ -10,17 +10,23 @@ Prends une matrice avec une seule note
 """
 
 repartitionsPossibles = [] #variableGlobale
-def specialGroupRepartition(marks):
+def specialGroupRepartition(marks, limitRepartition):
     print("on the special repartition")
     students = []
-    nbRepartitions = 10
+    if(limitRepartition):
+        nbRepartitions = limitRepartition
+    else:
+        if(len(marks) > 36):
+            nbRepartitions = 500
+        else:
+            nbRepartitions = 10
     currentRepartition = []
     i = 0
     while i < nbRepartitions:
 
         while len(students) < len(marks):
             # Faire un random sur la taille du groupe (2 ou 3):
-            if len(students) == len(marks) - 3 :
+            if len(students) == len(marks) - 3:
                 size = 3
             elif len(students) == len(marks) - 2 or len(students) == len(marks) - 4:
                 size = 2

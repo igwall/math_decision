@@ -7,6 +7,7 @@ from src.nodes import *
 from src.csvGenerator import *
 from src.special import *
 import copy
+import argparse
 
 """
 Paramètres :
@@ -65,8 +66,17 @@ def groupRepartition(marks, levels, index_level, eleveDejaGroupe, originalMarks,
 
 
 
-ext = sys.argv[1][1:]
-#file_preferences = open('preferences' + ext + '.csv' , 'r')  # open csv file on file_preferences
+# Arguments required
+parser = argparse.ArgumentParser()
+parser.add_argument('--number', type=int)
+parser.add_argument('--args', type=str)
+parser.add_argument('--ext', type=str)
+args = parser.parse_args()
+
+ext = args.ext
+number = args.number
+
+
 file_preferences = open('../DONNEES/preferences' + ext + '.csv' , 'r')  # open csv file on file_preferences
 
 data_raw = file_preferences.readlines()  # data_raw va get all the values from csv file
@@ -82,7 +92,7 @@ levels = ['AR','I','P','AB','B','TB']
 index_level = 0
 groupsTest = []
 if uniqueLevel(marks):
-    groupsTest = specialGroupRepartition(marks)
+    groupsTest = specialGroupRepartition(marks, number)
     repartitionsPossibles = groupsTest
 else:
     groupsTest = groupRepartition(marks, levels, index_level, [], originalMarks, [])
