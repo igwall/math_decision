@@ -58,7 +58,7 @@ print("max compute time:", max_compute_time)
 project_folder = "PROJET_PIFE_" + str(report_number)
 
 # The python executable name it must python or python3
-python_exec = "python"
+python_exec = "python3"
 
 # Construct the data folder
 data_folder = project_folder + "/DONNEES"
